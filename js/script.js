@@ -1,4 +1,5 @@
-window.addEventListener('DOMContentLoaded', gitfunction () {
+window.addEventListener('DOMContentLoaded', function() {
+    // tabs
 
     'use strict';
 
@@ -34,8 +35,46 @@ window.addEventListener('DOMContentLoaded', gitfunction () {
                 }
             }
         }
-    })
+    });
 
+    // Timer
+
+    let deadLine = '2022-12-23';
+
+    function getTimeRemaining(endtime) {
+        let f = Date.parse(endtime) - Date.parse(new Date()),
+            seconds = Math.floor((f/1000) % 60),
+            minutes = Math.floor((f/60000) % 60),
+            hours = Math.floor(f/3600000);
+
+        return {
+            'total' : f,
+            'hours' : hours,
+            'minutes' : minutes,
+            'seconds' : seconds
+        };
+    }
+
+    function setClock(id, endtime) {
+        let timer = document.getElementById(id),
+            hours = timer.querySelector('.hours'),
+            minutes = timer.querySelector('.minutes'),
+            seconds = timer.querySelector('.seconds'),
+            timeInterval = setInterval(updateClock, 1000);
+
+        function updateClock() {
+            let f = getTimeRemaining(endtime);
+            hours.textContent = f.hours;
+            minutes.textContent = f.minutes;
+            seconds.textContent = f.seconds;
+
+            if (f.total <= 0) {
+                clearInterval(timeInterval);
+            }
+        }
+    }
+
+    setClock('timer', deadLine);
 
 })
 
