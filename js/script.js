@@ -76,5 +76,24 @@ window.addEventListener('DOMContentLoaded', function() {
 
     setClock('timer', deadLine);
 
+    let moreBtn = document.querySelector('.more'),
+        modal = document.querySelector('.overlay'),
+        close = document.querySelector('.popup-close');
+
+    moreBtn.addEventListener('click', function () {
+        return modal.style.display = 'block';
+        this.classList.add('more-splash');
+        // window.onscroll = function(){
+        //     return false;
+        // }
+        // // document.body.style.overflow = 'hidden';
+    });
+
+    close.addEventListener('click', function () {
+        return modal.style.display = 'none';
+        modal.classList.remove('more-splash');
+        // document.body.style.overflow = '';
+
+    })
 })
 
